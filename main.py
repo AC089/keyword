@@ -12,11 +12,13 @@ def count(dt, driver, xpath):
             dt[str] += 1
         else:
             dt[str] = 1
+    else:
+        print('没有关键字')
 
 def isElementExist(driver, element):
     flag = True
     try:
-        driver.find_element_by_xpath(element)
+        WebDriverWait(driver,5).until(EC.presence_of_element_located((By.XPATH, element)))
         return flag
     except:
         flag = False
@@ -28,14 +30,14 @@ options = webdriver.ChromeOptions()
 mobile_emulation = {"deviceName": "iPhone X"}
 options.add_experimental_option("mobileEmulation", mobile_emulation)
 options.add_experimental_option('excludeSwitches', ['enable-logging'])
-#options.add_argument("--headless")
-#c_service = Service('./chromedriver')
-c_service = Service("chromedriver.exe")
+options.add_argument("--headless")
+c_service = Service('./chromedriver')
+# c_service = Service("chromedriver.exe")
 c_service.command_line_args()
 c_service.start()
 
-#driver = webdriver.Chrome(executable_path='./chromedriver', chrome_options=options)
-driver = webdriver.Chrome(executable_path='chromedriver.exe', chrome_options=options)
+driver = webdriver.Chrome(executable_path='./chromedriver', chrome_options=options)
+# driver = webdriver.Chrome(executable_path='chromedriver.exe', chrome_options=options)
 try:
     while True:
         keyword = input('\n\n输入关键字:')
