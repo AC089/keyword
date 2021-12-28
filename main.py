@@ -31,13 +31,13 @@ mobile_emulation = {"deviceName": "iPhone X"}
 options.add_experimental_option("mobileEmulation", mobile_emulation)
 options.add_experimental_option('excludeSwitches', ['enable-logging'])
 options.add_argument("--headless")
-c_service = Service('./chromedriver')
-# c_service = Service("chromedriver.exe")
+# c_service = Service('./chromedriver')
+c_service = Service("chromedriver.exe")
 c_service.command_line_args()
 c_service.start()
 
-driver = webdriver.Chrome(executable_path='./chromedriver', chrome_options=options)
-# driver = webdriver.Chrome(executable_path='chromedriver.exe', chrome_options=options)
+# driver = webdriver.Chrome(executable_path='./chromedriver', chrome_options=options)
+driver = webdriver.Chrome(executable_path='chromedriver.exe', chrome_options=options)
 try:
     while True:
         keyword = input('\n\n输入关键字:')
